@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Dark Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                        secondary: '#059669',
+                        dark: '#0F172A',
+                        'dark-light': '#1E293B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-100">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full glass z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-2xl font-bold text-primary">Portfolio</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
+                    <a href="#projects" class="text-gray-300 hover:text-primary transition-colors">Projects</a>
+                    <a href="#skills" class="text-gray-300 hover:text-primary transition-colors">Skills</a>
+                    <a href="#contact" class="text-gray-300 hover:text-primary transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16">
+        <div class="container mx-auto px-4 py-32">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                        Hi, I'm <span class="text-primary">Your Name</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 mb-8">Creative Developer & Designer</p>
+                    <div class="space-x-4">
+                        <a href="#contact" class="bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                            Get in Touch
+                        </a>
+                        <a href="#" class="glass text-white px-8 py-3 rounded-full hover:bg-dark-light transition-all duration-300">
+                            View Work
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-primary to-secondary opacity-20 absolute -top-4 -left-4 blur-2xl"></div>
+                    <div class="relative z-10">
+                        <img src="https://via.placeholder.com/500" alt="Profile" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-primary/20">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">About Me</h2>
+            <div class="glass rounded-3xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-semibold mb-4 text-primary">My Journey</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            I'm a creative developer passionate about building beautiful digital experiences. With a background in both design and development, I bring a unique perspective to every project I work on.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="glass rounded-xl p-4">
+                                <p class="text-primary font-semibold">Experience</p>
+                                <p class="text-gray-300">5+ Years</p>
+                            </div>
+                            <div class="glass rounded-xl p-4">
+                                <p class="text-primary font-semibold">Projects</p>
+                                <p class="text-gray-300">50+ Completed</p>
+                            </div>
+                            <div class="glass rounded-xl p-4">
+                                <p class="text-primary font-semibold">Location</p>
+                                <p class="text-gray-300">Remote</p>
+                            </div>
+                            <div class="glass rounded-xl p-4">
+                                <p class="text-primary font-semibold">Availability</p>
+                                <p class="text-gray-300">Open to Work</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 space-y-6">
+                        <div class="glass rounded-xl p-6">
+                            <h4 class="text-xl font-semibold mb-4 text-primary">What I Do</h4>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check text-primary"></i>
+                                    Frontend Development
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check text-primary"></i>
+                                    UI/UX Design
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check text-primary"></i>
+                                    Mobile App Development
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fas fa-check text-primary"></i>
+                                    Backend Integration
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card -->
+                <div class="glass rounded-2xl overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Project 1" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <a href="#" class="text-white font-semibold">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Project Title</h3>
+                        <p class="text-gray-400 mb-4">A brief description of the project and its key features.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-sm glass rounded-full">React</span>
+                            <span class="px-3 py-1 text-sm glass rounded-full">Node.js</span>
+                            <span class="px-3 py-1 text-sm glass rounded-full">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat project cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Skills & Expertise</h2>
+            <div class="glass rounded-3xl p-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center glass rounded-xl p-6 hover:scale-105 transition-transform duration-300">
+                        <i class="fab fa-react text-5xl text-primary mb-4"></i>
+                        <h3 class="text-lg font-semibold">React</h3>
+                        <div class="w-full bg-dark-light rounded-full h-2 mt-4">
+                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <!-- Repeat for other skills -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Get In Touch</h2>
+            <div class="max-w-3xl mx-auto glass rounded-3xl p-8">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg glass border border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary bg-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg glass border border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary bg-transparent">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Message</label>
+                        <textarea rows="6" class="w-full px-4 py-3 rounded-lg glass border border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary bg-transparent"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-secondary transition-colors duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2024 Your Name. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.querySelector('nav button');
+        const menuItems = document.querySelector('nav div.hidden');
+
+        menuButton.addEventListener('click', () => {
+            menuItems.classList.toggle('hidden');
+            menuItems.classList.toggle('flex');
+            menuItems.classList.toggle('flex-col');
+            menuItems.classList.toggle('absolute');
+            menuItems.classList.toggle('top-16');
+            menuItems.classList.toggle('left-0');
+            menuItems.classList.toggle('right-0');
+            menuItems.classList.toggle('glass');
+            menuItems.classList.toggle('p-4');
+        });
+    </script>
+</body>
+</html> 
