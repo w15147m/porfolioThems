@@ -386,34 +386,151 @@
         </div>
     </section>
 
-    <!-- Image Modal -->
-    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden">
-        <div class="relative w-full h-full flex items-center justify-center">
-            <!-- Close Button -->
-            <button id="closeModal" class="absolute top-4 right-4 text-white hover:text-primary transition-colors">
-                <i class="fas fa-times text-3xl"></i>
-            </button>
-            
-            <!-- Previous Button -->
-            <button id="prevImage" class="absolute left-4 text-white hover:text-primary transition-colors">
-                <i class="fas fa-chevron-left text-4xl"></i>
-            </button>
-            
-            <!-- Next Button -->
-            <button id="nextImage" class="absolute right-4 text-white hover:text-primary transition-colors">
-                <i class="fas fa-chevron-right text-4xl"></i>
-            </button>
-            
-            <!-- Image Container -->
-            <div class="max-w-4xl w-full mx-4">
-                <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl">
-                <div id="modalCaption" class="text-white text-center mt-4">
-                    <h3 class="text-xl font-semibold"></h3>
-                    <p class="text-gray-300"></p>
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-light-bg dark:bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">My Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-light-card dark:bg-dark-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Custom web applications built with modern technologies and best practices for optimal performance and user experience.</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Responsive Design
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Frontend Development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Backend Integration
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-light-card dark:bg-dark-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-mobile-alt text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Mobile Development</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Cross-platform mobile applications that deliver seamless user experiences across iOS and Android devices.</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            React Native Apps
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Native Development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            App Optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-light-card dark:bg-dark-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-paint-brush text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">UI/UX Design</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Beautiful and intuitive user interfaces designed with a focus on user experience and modern design principles.</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Wireframing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Prototyping
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            User Research
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-light-card dark:bg-dark-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-server text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Backend Development</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Robust and scalable backend solutions built with modern frameworks and best practices for data management.</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            API Development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Database Design
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Server Setup
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="bg-light-card dark:bg-dark-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-search text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">SEO Optimization</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Improve your website's visibility and ranking in search engines with our comprehensive SEO services.</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Keyword Research
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            On-page SEO
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Performance Optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="bg-light-card dark:bg-dark-card rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shield-alt text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Security & Maintenance</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Keep your applications secure and up-to-date with our comprehensive security and maintenance services.</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Security Audits
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Regular Updates
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            Performance Monitoring
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="py-20 bg-light-bg dark:bg-dark-bg">
@@ -635,6 +752,35 @@
             </div>
         </div>
     </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden">
+        <div class="relative w-full h-full flex items-center justify-center">
+            <!-- Close Button -->
+            <button id="closeModal" class="absolute top-4 right-4 text-white hover:text-primary transition-colors">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            
+            <!-- Previous Button -->
+            <button id="prevImage" class="absolute left-4 text-white hover:text-primary transition-colors">
+                <i class="fas fa-chevron-left text-4xl"></i>
+            </button>
+            
+            <!-- Next Button -->
+            <button id="nextImage" class="absolute right-4 text-white hover:text-primary transition-colors">
+                <i class="fas fa-chevron-right text-4xl"></i>
+            </button>
+            
+            <!-- Image Container -->
+            <div class="max-w-4xl w-full mx-4">
+                <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl">
+                <div id="modalCaption" class="text-white text-center mt-4">
+                    <h3 class="text-xl font-semibold"></h3>
+                    <p class="text-gray-300"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Theme toggle functionality
