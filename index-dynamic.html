@@ -139,7 +139,8 @@
         /* Parallax effect for the circles */
         .parallax-circle {
             will-change: transform;
-            transition: transform 0.1s ease-out;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            position: absolute;
         }
         
         #parallaxContainer {
@@ -147,6 +148,81 @@
             inset: 0;
             overflow: hidden;
             pointer-events: none;
+        }
+        
+        /* Remove float animations since we'll use JS for random movement */
+        .animate-float-slow,
+        .animate-float-medium,
+        .animate-float-fast {
+            animation: none;
+        }
+
+        /* Enhanced animations for the circles */
+        .circle {
+            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            will-change: transform;
+            position: absolute;
+        }
+        
+        #parallaxContainer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        @keyframes float-up-down {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes float-left-right {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(0); }
+        }
+        
+        @keyframes float-diagonal {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(15px, -15px); }
+            50% { transform: translate(0, -20px); }
+            75% { transform: translate(-15px, -5px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Enhanced animations for the circles with larger movement */
+        .circle {
+            transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+            will-change: transform;
+            position: absolute;
+        }
+        
+        #parallaxContainer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        @keyframes float-up-down {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-60px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes float-left-right {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(60px); }
+            100% { transform: translateX(0); }
+        }
+        
+        @keyframes float-diagonal {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(45px, -45px); }
+            50% { transform: translate(0, -60px); }
+            75% { transform: translate(-45px, -15px); }
+            100% { transform: translate(0, 0); }
         }
     </style>
 </head>
@@ -241,12 +317,12 @@
     <section id="home" class="min-h-screen pt-16 custom-shape bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 relative overflow-hidden">
         <!-- Animated background elements -->
         <div class="absolute inset-0 overflow-hidden" id="parallaxContainer">
-            <div class="parallax-circle floating-circle w-64 h-64 bg-primary/10 dark:bg-primary/20 rounded-full absolute -top-20 -left-20 animate-float-slow" data-speed="0.03"></div>
-            <div class="parallax-circle floating-circle w-48 h-48 bg-secondary/10 dark:bg-secondary/20 rounded-full absolute top-1/3 -right-10 animate-float-medium" data-speed="0.05"></div>
-            <div class="parallax-circle floating-circle w-32 h-32 bg-primary/10 dark:bg-primary/20 rounded-full absolute bottom-20 left-1/4 animate-float-fast" data-speed="0.07"></div>
-            <div class="parallax-circle floating-circle w-24 h-24 bg-secondary/10 dark:bg-secondary/20 rounded-full absolute bottom-40 right-1/3 animate-float-medium" data-speed="0.04"></div>
-            <div class="parallax-circle floating-circle w-16 h-16 bg-primary/15 dark:bg-primary/25 rounded-full absolute top-40 left-1/3 animate-float-fast" data-speed="0.06"></div>
-            <div class="parallax-circle floating-circle w-20 h-20 bg-secondary/15 dark:bg-secondary/25 rounded-full absolute top-60 right-1/4 animate-float-medium" data-speed="0.08"></div>
+            <div class="circle w-64 h-64 bg-primary/10 dark:bg-primary/20 rounded-full absolute -top-20 -left-20" data-speed="0.04" data-float-delay="0"></div>
+            <div class="circle w-48 h-48 bg-secondary/10 dark:bg-secondary/20 rounded-full absolute top-1/3 -right-10" data-speed="0.06" data-float-delay="1"></div>
+            <div class="circle w-32 h-32 bg-primary/10 dark:bg-primary/20 rounded-full absolute bottom-20 left-1/4" data-speed="0.08" data-float-delay="2"></div>
+            <div class="circle w-24 h-24 bg-secondary/10 dark:bg-secondary/20 rounded-full absolute bottom-40 right-1/3" data-speed="0.05" data-float-delay="3"></div>
+            <div class="circle w-16 h-16 bg-primary/15 dark:bg-primary/25 rounded-full absolute top-40 left-1/3" data-speed="0.07" data-float-delay="1.5"></div>
+            <div class="circle w-20 h-20 bg-secondary/15 dark:bg-secondary/25 rounded-full absolute top-60 right-1/4" data-speed="0.09" data-float-delay="0.5"></div>
         </div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
@@ -1266,43 +1342,99 @@
             });
         });
 
-        // Parallax effect for circles on mouse movement
+        // Enhanced circle animations with mouse interaction and large radius
         document.addEventListener('DOMContentLoaded', () => {
             const homeSection = document.getElementById('home');
-            const parallaxCircles = document.querySelectorAll('.parallax-circle');
+            const circles = document.querySelectorAll('.circle');
             
-            // Track mouse position
+            // Initialize basic floating animations
+            circles.forEach(circle => {
+                // Get random animation type
+                const animTypes = ['float-up-down', 'float-left-right', 'float-diagonal'];
+                const randomAnim = animTypes[Math.floor(Math.random() * animTypes.length)];
+                
+                // Get random duration
+                const duration = 8 + Math.random() * 10; // between 8-18s for slower, more dramatic movement
+                
+                // Get delay from data attribute
+                const delay = parseFloat(circle.getAttribute('data-float-delay'));
+                
+                // Apply animation
+                circle.style.animation = `${randomAnim} ${duration}s ease-in-out ${delay}s infinite`;
+                
+                // Store original animation
+                circle.setAttribute('data-original-animation', circle.style.animation);
+                
+                // Store initial transform for combined animations
+                circle.setAttribute('data-mouse-transform', 'translate(0px, 0px)');
+            });
+            
+            // Track mouse activity
+            let isMouseActive = false;
             let mouseX = 0;
             let mouseY = 0;
             
-            // Track window dimensions
+            // Get window dimensions
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
             
-            // Add mouse move event to the home section
-            homeSection.addEventListener('mousemove', (e) => {
-                // Calculate mouse position relative to center of screen
-                mouseX = e.clientX - windowWidth / 2;
-                mouseY = e.clientY - windowHeight / 2;
-                
-                // Apply transform to each circle based on its data-speed attribute
-                parallaxCircles.forEach(circle => {
+            // Function to update circle positions based on mouse
+            function updateCirclePositions() {
+                circles.forEach(circle => {
                     const speed = parseFloat(circle.getAttribute('data-speed'));
-                    const x = mouseX * speed;
-                    const y = mouseY * speed;
                     
-                    // Apply the transform with added float animation
-                    circle.style.transform = `translate(${x}px, ${y}px)`;
+                    // Calculate mouse influence (relative to center of screen)
+                    const mouseXRelative = mouseX - windowWidth / 2;
+                    const mouseYRelative = mouseY - windowHeight / 2;
+                    
+                    // Calculate offsets with increased radius when mouse is active
+                    const radiusMultiplier = isMouseActive ? 5 : 2; // 5x radius when mouse is active, 2x when not
+                    const xOffset = mouseXRelative * speed * radiusMultiplier;
+                    const yOffset = mouseYRelative * speed * radiusMultiplier;
+                    
+                    // Save current mouse-based transform
+                    circle.setAttribute('data-mouse-transform', `translate(${xOffset}px, ${yOffset}px)`);
+                    
+                    // Apply combined transform - we need to manually combine the floating animation with mouse movement
+                    applyCircleTransform(circle);
                 });
+                
+                // Continue animation loop
+                requestAnimationFrame(updateCirclePositions);
+            }
+            
+            // Function to apply combined transforms
+            function applyCircleTransform(circle) {
+                const mouseTransform = circle.getAttribute('data-mouse-transform');
+                
+                // We use the custom property to add mouse movement on top of the CSS animation
+                circle.style.transform = mouseTransform;
+            }
+            
+            // Track when mouse moves within hero section
+            homeSection.addEventListener('mousemove', (e) => {
+                isMouseActive = true;
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Clear any existing timeout
+                if (window.mouseTimeout) {
+                    clearTimeout(window.mouseTimeout);
+                }
+                
+                // Set timeout to reduce (but not eliminate) mouse influence
+                window.mouseTimeout = setTimeout(() => {
+                    isMouseActive = false;
+                }, 3000); // Longer influence time (3 seconds)
             });
             
-            // Reset position when mouse leaves
+            // Reduce influence when mouse leaves, but don't reset completely
             homeSection.addEventListener('mouseleave', () => {
-                parallaxCircles.forEach(circle => {
-                    // Smoothly transition back to original position
-                    circle.style.transform = 'translate(0px, 0px)';
-                });
+                isMouseActive = false;
             });
+            
+            // Start the animation loop
+            updateCirclePositions();
         });
     </script>
 </body>
