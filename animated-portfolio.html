@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInTop {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease forwards;
+        }
+        
+        .animate-slideInRight {
+            animation: slideInRight 1s ease forwards;
+        }
+        
+        .animate-slideInTop {
+            animation: slideInTop 1s ease forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Staggered animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        /* Custom cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(68, 51, 255, 0.3);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <div id="cursor" class="custom-cursor"></div>
+    
+    <!-- Header Section -->
+    <header class="h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h1 class="text-7xl font-bold mb-6 opacity-0 animate-fadeIn">Creative <span class="text-indigo-500">Developer</span></h1>
+            <p class="text-xl text-gray-300 max-w-lg opacity-0 animate-fadeIn delay-200">
+                Crafting beautiful digital experiences through code and creativity
+            </p>
+            <div class="mt-10 opacity-0 animate-fadeIn delay-300">
+                <a href="#work" class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-full font-medium transition-all duration-300 inline-block mr-4">View Work</a>
+                <a href="#contact" class="border border-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full font-medium transition-all duration-300 inline-block">Contact Me</a>
+            </div>
+        </div>
+        
+        <!-- Animated background elements -->
+        <div class="absolute top-0 right-0 w-1/3 h-screen bg-indigo-900 opacity-10 -rotate-12 transform origin-top-right animate-slideInRight"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-600 rounded-full opacity-10 animate-float"></div>
+        <div class="absolute top-1/4 right-1/4 w-20 h-20 bg-pink-600 rounded-full opacity-20 animate-float delay-200"></div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
+                    <img src="https://source.unsplash.com/random/600x600/?developer" alt="Profile" class="rounded-lg shadow-2xl transform transition-all duration-500 hover:scale-105">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">About <span class="text-indigo-500">Me</span></h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                        I'm a passionate web developer with expertise in creating responsive, user-friendly applications. 
+                        With a strong foundation in modern web technologies, I blend creativity with technical precision 
+                        to build solutions that make an impact.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+                            <span>Front-end Development</span>
+                        </div>
+                        <div class="flex items-center" data-aos="fade-up" data-aos-delay="300">
+                            <div class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+                            <span>UI/UX Design</span>
+                        </div>
+                        <div class="flex items-center" data-aos="fade-up" data-aos-delay="400">
+                            <div class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+                            <span>Back-end Development</span>
+                        </div>
+                        <div class="flex items-center" data-aos="fade-up" data-aos-delay="500">
+                            <div class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+                            <span>Responsive Design</span>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="600">
+                        <a href="#skills" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center">
+                            Learn more about my skills
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">My <span class="text-indigo-500">Skills</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Card 1 -->
+                <div class="bg-gray-800 rounded-lg p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="100">
+                    <div class="text-indigo-500 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Frontend Development</h3>
+                    <p class="text-gray-400 mb-4">Building responsive and interactive user interfaces.</p>
+                    <div class="space-y-2">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between">
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">HTML/CSS</span></div>
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">95%</span></div>
+                            </div>
+                            <div class="overflow-hidden h-2 mt-1 text-xs flex rounded bg-gray-700">
+                                <div style="width: 95%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500 animate-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between">
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">JavaScript</span></div>
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">90%</span></div>
+                            </div>
+                            <div class="overflow-hidden h-2 mt-1 text-xs flex rounded bg-gray-700">
+                                <div style="width: 90%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500 animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill Card 2 -->
+                <div class="bg-gray-800 rounded-lg p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="200">
+                    <div class="text-indigo-500 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Backend Development</h3>
+                    <p class="text-gray-400 mb-4">Building scalable server-side applications and APIs.</p>
+                    <div class="space-y-2">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between">
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">Node.js</span></div>
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">85%</span></div>
+                            </div>
+                            <div class="overflow-hidden h-2 mt-1 text-xs flex rounded bg-gray-700">
+                                <div style="width: 85%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500 animate-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between">
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">Python</span></div>
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">80%</span></div>
+                            </div>
+                            <div class="overflow-hidden h-2 mt-1 text-xs flex rounded bg-gray-700">
+                                <div style="width: 80%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500 animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill Card 3 -->
+                <div class="bg-gray-800 rounded-lg p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="300">
+                    <div class="text-indigo-500 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+                    <p class="text-gray-400 mb-4">Creating beautiful and intuitive user experiences.</p>
+                    <div class="space-y-2">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between">
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">Figma</span></div>
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">90%</span></div>
+                            </div>
+                            <div class="overflow-hidden h-2 mt-1 text-xs flex rounded bg-gray-700">
+                                <div style="width: 90%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500 animate-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between">
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">Adobe XD</span></div>
+                                <div><span class="text-xs font-semibold inline-block text-indigo-500">80%</span></div>
+                            </div>
+                            <div class="overflow-hidden h-2 mt-1 text-xs flex rounded bg-gray-700">
+                                <div style="width: 80%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500 animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">My <span class="text-indigo-500">Projects</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://source.unsplash.com/random/600x400/?website" alt="Project 1" class="w-full transform transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <h3 class="text-xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">E-Commerce Website</h3>
+                            <p class="text-gray-300 mb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-100">A full-featured online store with payment processing.</p>
+                            <div class="flex space-x-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-200">
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">React</span>
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">Node.js</span>
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://source.unsplash.com/random/600x400/?mobile" alt="Project 2" class="w-full transform transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <h3 class="text-xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">Fitness Tracker App</h3>
+                            <p class="text-gray-300 mb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-100">A mobile app for tracking workouts and progress.</p>
+                            <div class="flex space-x-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-200">
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">React Native</span>
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">Firebase</span>
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">Redux</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://source.unsplash.com/random/600x400/?dashboard" alt="Project 3" class="w-full transform transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <h3 class="text-xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">Analytics Dashboard</h3>
+                            <p class="text-gray-300 mb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-100">A data visualization dashboard for business metrics.</p>
+                            <div class="flex space-x-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-200">
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">Vue.js</span>
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">D3.js</span>
+                                <span class="bg-indigo-600 text-xs text-white px-2 py-1 rounded">Express</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="#" class="border border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white px-8 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center">
+                    View All Projects
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init();
+        
+        // Custom cursor
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.getElementById('cursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html> 
