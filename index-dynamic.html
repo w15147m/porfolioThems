@@ -36,9 +36,90 @@
         .custom-shape {
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #8B5CF6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #8B5CF6, #6D28D9);
+            transform-origin: 0%;
+            z-index: 1000;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #8B5CF6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        .back-to-top:hover {
+            background: #6D28D9;
+        }
     </style>
 </head>
 <body class="bg-light-bg dark:bg-dark-bg transition-colors duration-300">
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- Mobile Sidebar -->
     <div id="mobileSidebar" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
         <div class="fixed right-0 top-0 h-full w-64 bg-light-bg dark:bg-dark-bg shadow-lg transform transition-transform duration-300 translate-x-full">
@@ -536,9 +617,26 @@
     <section id="gallery" class="py-20 bg-light-bg dark:bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Gallery</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-primary text-white hover:bg-secondary transition-colors" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-dark-card text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors" data-filter="web">
+                    Web Development
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-dark-card text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors" data-filter="mobile">
+                    Mobile Apps
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-dark-card text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors" data-filter="ui">
+                    UI/UX Design
+                </button>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Gallery Item 1 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal(0)">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" data-category="web" onclick="openModal(0)">
                     <img src="https://via.placeholder.com/600x400" alt="Gallery Image 1" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-0 left-0 right-0 p-6">
@@ -549,56 +647,56 @@
                 </div>
 
                 <!-- Gallery Item 2 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal(1)">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" data-category="mobile" onclick="openModal(1)">
                     <img src="https://via.placeholder.com/600x400" alt="Gallery Image 2" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">UI/UX Design</h3>
-                            <p class="text-gray-200 text-sm">Mobile App Design</p>
+                            <h3 class="text-xl font-semibold text-white mb-2">Mobile App</h3>
+                            <p class="text-gray-200 text-sm">Mobile Development</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 3 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal(2)">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" data-category="ui" onclick="openModal(2)">
                     <img src="https://via.placeholder.com/600x400" alt="Gallery Image 3" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Brand Identity</h3>
-                            <p class="text-gray-200 text-sm">Logo Design</p>
+                            <h3 class="text-xl font-semibold text-white mb-2">UI Design</h3>
+                            <p class="text-gray-200 text-sm">UI/UX Design</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 4 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal(3)">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" data-category="web" onclick="openModal(3)">
                     <img src="https://via.placeholder.com/600x400" alt="Gallery Image 4" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-0 left-0 right-0 p-6">
                             <h3 class="text-xl font-semibold text-white mb-2">E-Commerce</h3>
-                            <p class="text-gray-200 text-sm">Online Store</p>
+                            <p class="text-gray-200 text-sm">Web Development</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 5 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal(4)">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" data-category="ui" onclick="openModal(4)">
                     <img src="https://via.placeholder.com/600x400" alt="Gallery Image 5" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Dashboard</h3>
-                            <p class="text-gray-200 text-sm">Analytics Platform</p>
+                            <h3 class="text-xl font-semibold text-white mb-2">Dashboard Design</h3>
+                            <p class="text-gray-200 text-sm">UI/UX Design</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Gallery Item 6 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" onclick="openModal(5)">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" data-category="mobile" onclick="openModal(5)">
                     <img src="https://via.placeholder.com/600x400" alt="Gallery Image 6" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Mobile App</h3>
-                            <p class="text-gray-200 text-sm">iOS Development</p>
+                            <h3 class="text-xl font-semibold text-white mb-2">iOS App</h3>
+                            <p class="text-gray-200 text-sm">Mobile Development</p>
                         </div>
                     </div>
                 </div>
@@ -777,6 +875,14 @@
                 <div id="modalCaption" class="text-white text-center mt-4">
                     <h3 class="text-xl font-semibold"></h3>
                     <p class="text-gray-300"></p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-white/20 rounded-full text-sm"></span>
+                    </div>
+                    <div class="mt-6">
+                        <a href="#" class="inline-flex items-center px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                            View Project <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -844,37 +950,49 @@
         const nextButton = document.getElementById('nextImage');
         let currentImageIndex = 0;
 
-        // Gallery data
-        const galleryItems = [
+        // Enhanced Gallery data
+        const modalGalleryItems = [
             {
                 image: 'https://via.placeholder.com/600x400',
                 title: 'Project Showcase',
-                description: 'Web Development'
+                description: 'Web Development',
+                technologies: ['React', 'Node.js', 'MongoDB'],
+                link: '#'
             },
             {
                 image: 'https://via.placeholder.com/600x400',
                 title: 'UI/UX Design',
-                description: 'Mobile App Design'
+                description: 'Mobile App Design',
+                technologies: ['Figma', 'Adobe XD', 'Sketch'],
+                link: '#'
             },
             {
                 image: 'https://via.placeholder.com/600x400',
                 title: 'Brand Identity',
-                description: 'Logo Design'
+                description: 'Logo Design',
+                technologies: ['Adobe Illustrator', 'Photoshop'],
+                link: '#'
             },
             {
                 image: 'https://via.placeholder.com/600x400',
                 title: 'E-Commerce',
-                description: 'Online Store'
+                description: 'Online Store',
+                technologies: ['Vue.js', 'Laravel', 'MySQL'],
+                link: '#'
             },
             {
                 image: 'https://via.placeholder.com/600x400',
                 title: 'Dashboard',
-                description: 'Analytics Platform'
+                description: 'Analytics Platform',
+                technologies: ['React', 'D3.js', 'Firebase'],
+                link: '#'
             },
             {
                 image: 'https://via.placeholder.com/600x400',
                 title: 'Mobile App',
-                description: 'iOS Development'
+                description: 'iOS Development',
+                technologies: ['Swift', 'SwiftUI', 'Core Data'],
+                link: '#'
             }
         ];
 
@@ -891,15 +1009,25 @@
         }
 
         function updateModal() {
-            const item = galleryItems[currentImageIndex];
+            const item = modalGalleryItems[currentImageIndex];
             modalImage.src = item.image;
             modalImage.alt = item.title;
             modalCaption.querySelector('h3').textContent = item.title;
             modalCaption.querySelector('p').textContent = item.description;
             
+            // Update technologies
+            const techContainer = modalCaption.querySelector('.flex');
+            techContainer.innerHTML = item.technologies.map(tech => 
+                `<span class="px-3 py-1 bg-white/20 rounded-full text-sm">${tech}</span>`
+            ).join('');
+            
+            // Update project link
+            const projectLink = modalCaption.querySelector('a');
+            projectLink.href = item.link;
+            
             // Update navigation buttons visibility
             prevButton.style.display = currentImageIndex === 0 ? 'none' : 'block';
-            nextButton.style.display = currentImageIndex === galleryItems.length - 1 ? 'none' : 'block';
+            nextButton.style.display = currentImageIndex === modalGalleryItems.length - 1 ? 'none' : 'block';
         }
 
         function prevImage() {
@@ -910,7 +1038,7 @@
         }
 
         function nextImage() {
-            if (currentImageIndex < galleryItems.length - 1) {
+            if (currentImageIndex < modalGalleryItems.length - 1) {
                 currentImageIndex++;
                 updateModal();
             }
@@ -950,6 +1078,70 @@
                     modal.classList.remove('dark');
                 }
             }
+        });
+
+        // Gallery Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+                filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'dark:bg-dark-card', 'text-gray-700', 'dark:text-gray-300'));
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-primary', 'text-white');
+                button.classList.remove('bg-gray-200', 'dark:bg-dark-card', 'text-gray-700', 'dark:text-gray-300');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    // Show all items if 'all' is selected, otherwise show only matching categories
+                    if (filterValue === 'all' || filterValue === itemCategory) {
+                        item.style.display = 'block';
+                        // Add animation
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                        }, 100);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Loading Animation
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            loader.classList.add('hidden');
+        });
+
+        // Scroll Progress
+        const scrollProgress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Back to Top Button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
